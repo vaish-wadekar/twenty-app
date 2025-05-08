@@ -4,7 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 const Login = () => {
 
     const SITE_KEY = "6LfUuDArAAAAANq0mQNAH-ega_t7cuGUazgJ124Z"
-    // const   navigate = useNavigate ();
+    const navigate = useNavigate();
 
 
     const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const Login = () => {
         reCaptchaVerified: false
     })
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
@@ -21,7 +21,7 @@ const Login = () => {
     }
 
 
-    const handleRecaptchaChange = (value) =>{
+    const handleRecaptchaChange = (value) => {
         // const isVerified = value ? true: false;
         const isVerified = !!value;
         setFormData({
@@ -33,12 +33,13 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(formData.email != 'admin@gmail.com') return;
-        if(formData.password != 'admin123') return;
-        if(!formData.reCaptchaVerified) return;
+        if (formData.email != 'admin@gmail.com') return;
+        if (formData.password != 'admin123') return;
+        if (!formData.reCaptchaVerified) return;
 
         // Redirect User to the Dashboard
-        alert('Login Successful')
+        // alert('Login Successful')
+        navigate('/dashboard');
     }
 
     return (
@@ -55,8 +56,8 @@ const Login = () => {
                     <input type="password" name="password" id="password" className="text-xl border-2 border-gray-300 rounded-lg p-1" onChange={handleChange} value={formData.password} />
                 </div>
                 <div className="mb-4">
-                    <ReCAPTCHA sitekey={SITE_KEY} 
-                    onChange={handleRecaptchaChange} />
+                    <ReCAPTCHA sitekey={SITE_KEY}
+                        onChange={handleRecaptchaChange} />
                 </div>
                 <div className="flex justify-center mb-4">
                     <button type="submit" className='bg-blue-500 py-1 px-4'>Login</button>
